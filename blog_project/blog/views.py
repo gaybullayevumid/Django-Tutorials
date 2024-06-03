@@ -27,3 +27,8 @@ from .models import Blog
 class BlogListView(ListView):
     model = Blog
     template_name = "home.html"
+    context_object_name = "blogs"
+
+class BlogDetailView(DetailView):
+    model = Blog
+    template_name = "blog_detail.html"
