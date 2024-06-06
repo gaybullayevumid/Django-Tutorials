@@ -3,6 +3,12 @@ from django.db import models
 
 # Create your models here.
 
+
+class PublishdManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=News.Status.Published)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
@@ -27,6 +33,9 @@ class News(models.Model):
                               choices=Status.choices,
                               default=Status.Draft
                               )
+
+    objects = models.Manager()
+    published = PublishdManager()
 
     class Meta:
         ordering = ["-publish_time"]
