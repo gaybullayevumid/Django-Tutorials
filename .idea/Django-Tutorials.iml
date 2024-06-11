@@ -15,6 +15,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/blog_project/templates" />
+        <option value="$MODULE_DIR$/news_project/templates" />
       </list>
     </option>
   </component>

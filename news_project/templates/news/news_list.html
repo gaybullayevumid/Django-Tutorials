@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>News List</title>
 </head>
 <body>
-
+<h1>All News List</h1>
+{% for news in news_list %}
+    <li><a href="{% url 'news_detail_page' news.pk %}">{{ news.title }}</a></li>
+{% endfor%}
 </body>
 </html>
