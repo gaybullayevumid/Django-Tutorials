@@ -7,3 +7,9 @@ class ContactForm(forms.ModelForm):
         model = Contact
         # fields = ['name', 'email', 'message']
         fields = '__all__'
+
+
+class SubscriptionForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField()
+    email = forms.EmailField()
