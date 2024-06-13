@@ -24,11 +24,15 @@ def news_detail(request, id):
 
 
 def homePageView(request):
-    news_list = News.published.all().order_by('-publish_time')[:10]
     categories = Category.objects.all()
+    news_list = News.published.all().order_by('-publish_time')[:10]
+    local_one = News.published.filter(category__name="Mahalliy").order_by("-publish_time")[:1]
+    local_news = News.published.all().filter(category__name="Mahalliy").order_by("-publish_time")[1:6]
     context = {
         'news_list':news_list,
-        'categories':categories
+        'categories':categories,
+        "local_one":local_one,
+        'local_news':local_news
     }
 
     return render(request, 'news/home.html', context)
