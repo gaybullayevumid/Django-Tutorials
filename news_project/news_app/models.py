@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -43,6 +44,10 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+    def get_absolute_url(self):
+        return reverse("news_detail_page", args=[self.slug])
     
 
 class Contact(models.Model):

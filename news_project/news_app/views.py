@@ -14,8 +14,8 @@ def news_list(request):
 
     return render(request, "news/news_list.html", context)
 
-def news_detail(request, id):
-    news = get_object_or_404(News, id=id, status=News.Status.Published)
+def news_detail(request, news):
+    news = get_object_or_404(News, slug=news, status=News.Status.Published)
     context = {
         "news":news
     }
@@ -46,9 +46,12 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        context['news_list'] = News.published.all().order_by('-publish_time')[:10]
-        context['local_one'] = News.published.filter(category__name="Mahalliy").order_by("-publish_time")[:1]
-        context['local_news'] = News.published.all().filter(category__name="Mahalliy").order_by("-publish_time")[1:6]
+        context['news_list'] = News.published.all().order_by('-publish_time')[:5]
+        # context['local_one'] = News.published.filter(category__name="Mahalliy").order_by("-publish_time")[:1]
+        context['mahalliy_xabarlar'] = News.published.all().filter(category__name="Mahalliy").order_by("-publish_time")[:5]
+        context['xorij_xabarlari'] = News.published.all().filter(category__name="Xorij").order_by("-publish_time")[:5]
+        context['sport_xabarlari'] = News.published.all().filter(category__name="Sport").order_by("-publish_time")[:5]
+        context['texnologiya_xabarlar'] = News.published.all().filter(category__name="Texnologiya").order_by("-publish_time")[:5]
 
         return context
 
