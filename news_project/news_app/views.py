@@ -87,3 +87,41 @@ class ContactPageView(TemplateView):
         }
 
         return render(request, 'news/contact.html', context)
+    
+
+class LocalNewsView(ListView):
+    model = News
+    template_name = 'news/mahalliy.html'
+    context_object_name = 'mahalliy_yangiliklar'
+
+    def get_queryset(self):
+       news = self.model.published.all().filter(category__name="Mahalliy")
+       return news
+   
+
+class ForeignNewsView(ListView):
+    model = News
+    template_name = 'news/xorij.html'
+    context_object_name = 'xorij_yangiliklar'
+
+    def get_queryset(self):
+       news = self.model.published.all().filter(category__name="Xorij")
+       return news
+
+class TechnologyNewsView(ListView):
+    model = News
+    template_name = 'news/texnologiya.html'
+    context_object_name = 'texnologik_yangiliklar'
+
+    def get_queryset(self):
+       news = self.model.published.all().filter(category__name="Texnologiya")
+       return news
+
+class SportNewsView(ListView):
+    model = News
+    template_name = 'news/sport.html'
+    context_object_name = 'sport_yangiliklar'
+
+    def get_queryset(self):
+       news = self.model.published.all().filter(category__name="Sport")
+       return news
