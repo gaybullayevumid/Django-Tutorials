@@ -8,5 +8,9 @@
     <img src="{{news.image.url}}" >
     <p>{{news.body}}</p>
 
+    <div class="card-footer text-center">
+        <a href="{% url 'news_update' news.slug %}">Tahrirlash</a>
+        <a href="{% url 'news_delete' news.slug %}">O'chirish</a>
+    </div>
 
 {% endblock content %}
