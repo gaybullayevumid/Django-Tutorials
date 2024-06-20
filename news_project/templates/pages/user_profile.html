@@ -4,5 +4,12 @@
 {% block title %} Foydalanuvchi profili {% endblock title %}
 
 {% block content %}
-<h2>Xush kelibsiz, {{ user.username }}</h2>
+    <h3>Xush kelibsiz, {{ user.username }}</h3>
+    <h2>Siz haqingizdagi ma'lumotlar</h2>
+    <label>Username</label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
+    <label>Emailingiz</label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
+    <label>Ismingiz</label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"><br>
+    <label>Familiyangiz</label> <input value="{{ user.last_name }}" readonly placeholder="kiritilmagan"><br>
+
+    <h4><a href="#">Parolni almashtirish</a> </h4>
 {% endblock content %}
