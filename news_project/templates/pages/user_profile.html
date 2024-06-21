@@ -8,8 +8,8 @@
     <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit">Logout</button>
-    </form>
-    
+    </form> 
+
     <h2>Siz haqingizdagi ma'lumotlar</h2>
     <label>Username</label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
     <label>Emailingiz</label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
