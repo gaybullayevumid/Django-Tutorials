@@ -10,9 +10,7 @@ def user_login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            print(data)
             user = authenticate(request, username=data['username'], password=data['password'])
-            print(user)
             if user is not None:
                 if user.is_active:
                     login(request, user)
