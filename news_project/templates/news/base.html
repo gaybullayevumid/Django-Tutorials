@@ -34,6 +34,7 @@
           <div class="header_top_right">
 
             {% if request.user.is_authenticated %}
+              <p><a href="{% url 'logout' %} " style="color: palegreen">Logout</a></p>
               <p><a href="{% url 'user_profile' %} " style="color: yellow">My profile</a></p>
               {% else %}
               <p><a href="{% url 'login' %}" style="color: yellow">Saytga kirish</a></p>
