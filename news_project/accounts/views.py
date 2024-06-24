@@ -33,11 +33,11 @@ def user_login(request):
 @login_required
 def dashboard_view(request):
     user = request.user
-    profil_info = Profile.objects.filter(user=user)
-    print(profil_info)
+    profile = Profile.objects.get(user=user)
+    print(profile)
     context = {
         'user': user,
-        'profile':profil_info
+        'profile':profile
     }
 
     return render(request, 'pages/user_profile.html', context)

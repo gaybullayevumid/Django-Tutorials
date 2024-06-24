@@ -11,7 +11,8 @@
     </form> 
 
     <h2>Siz haqingizdagi ma'lumotlar</h2>
-    <img src="{{ profile.photo.url }}" width="50% ">
+    <img src="{{ profile.photo.url }}" width="5%">
+    <h4>Tug'ilgan yilingiz {{profile.date_of_birth}}</h4>
     <label>Username</label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
     <label>Emailingiz</label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
     <label>Ismingiz</label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"><br>
