@@ -8,9 +8,11 @@
     <img src="{{news.image.url}}" >
     <p>{{news.body}}</p>
 
+    {% if request.user.is_authenticated and request.user.is_superuser %}
     <div class="card-footer text-center">
         <a href="{% url 'news_update' news.slug %}">Tahrirlash</a>
         <a href="{% url 'news_delete' news.slug %}">O'chirish</a>
     </div>
+    {% endif %}
 
 {% endblock content %}

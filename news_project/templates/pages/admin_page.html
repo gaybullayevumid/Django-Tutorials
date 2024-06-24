@@ -1,0 +1,27 @@
+{% extends "news/base.html" %}
+{% block title %} Admin sahifasi {% endblock title %}
+
+{% block content %}
+
+    <h1>Admin sahifasi</h1>
+
+    <table class="table table-bordered table-responsive table-striped">
+        <tr>
+            <th>Username</th>
+            <th>Ismi</th>
+            <th>Familiyasi</th>
+            {% comment %} <th>Rasmi</th> {% endcomment %}
+            {% comment %} <th>Tug'ilgan yili</th> {% endcomment %}
+        </tr>
+        {% for user in admin_users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            {% comment %} <td>{{ user.username }}</td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </table>
+    <h2 class="text-primary"><a href="{% url 'news_create' %}" class="text-primary">+Yangilik qo'shish</a></h2>
+
+{% endblock content %}

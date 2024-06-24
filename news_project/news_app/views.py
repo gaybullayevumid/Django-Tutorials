@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import News, Category
@@ -5,7 +6,7 @@ from .forms import ContactForm
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from news_project.custom_permissions import OnlyLoggedSuperUser
 
 # Create your views here.
@@ -143,3 +144,14 @@ class NewsCreateView(OnlyLoggedSuperUser, CreateView):
         model = News
         template_name = 'crud/news_create.html'
         fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+
+@login_required
+@user_passes_test(lambda u:u.is_superuser)
+def admin_page_view(request):
+    admin_users = User.objects.filter(is_superuser=True)
+
+    context = {
+        "admin_users":admin_users
+    }
+
+    return render(request, 'pages/admin_page.html', context)
