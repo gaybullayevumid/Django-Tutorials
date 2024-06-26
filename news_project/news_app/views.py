@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import News, Category
@@ -183,3 +184,9 @@ class SearchResultsList(ListView):
     model = News
     template_name = 'news/search_result.html'
     context_object_name = 'barcha_yangiliklar'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return News.objects.filter(
+            title__icontains=query
+        )

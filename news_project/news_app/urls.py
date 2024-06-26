@@ -14,4 +14,5 @@ urlpatterns = [
     path('texnology/', TechnologyNewsView.as_view(), name='texnology_news_page'),
     path('sport/', SportNewsView.as_view(), name='sport_news_page'),
     path('adminpage/', admin_page_view, name='admin_page'),
+    path('searchresult/', SearchResultsList.as_view(), name="search_results")
 ]
