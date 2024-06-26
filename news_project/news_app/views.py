@@ -20,11 +20,16 @@ def news_list(request):
     return render(request, "news/news_list.html", context)
 
 def news_detail(request, news):
+
     news = get_object_or_404(News, slug=news, status=News.Status.Published)
     comments = news.comments.filter(active=True)
     new_comment = None
+    comment_form = CommentForm()
+
+
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
+        
         if comment_form.is_valid():
             # yangi comment obyektini yaratamiz lk DB ga saqlamaymiz
             new_comment = comment_form.save(commit=False)
@@ -33,8 +38,8 @@ def news_detail(request, news):
             new_comment.user = request.user
             # ma'lumotlar bazasida saqlaymiz
             new_comment.save()
-        else:
             comment_form = CommentForm()
+
     context = {
         "news":news,
         "comments":comments,
@@ -172,3 +177,9 @@ def admin_page_view(request):
     }
 
     return render(request, 'pages/admin_page.html', context)
+
+
+class SearchResultsList(ListView):
+    model = News
+    template_name = 'news/search_result.html'
+    context_object_name = 'barcha_yangiliklar'

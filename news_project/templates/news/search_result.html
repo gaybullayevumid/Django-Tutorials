@@ -1,0 +1,9 @@
+{% extends "news/base.html" %}
+{% block title %}Qidiruv natijalari{% endblock title %}
+
+{% block content %}
+    <h2>Qidiruv natijalari</h2>
+    {% for yangilik in barcha_yangiliklar %}
+        <h3>{{yangilik.title}}</h3>
+    {% endfor %}
+{% endblock content %}
