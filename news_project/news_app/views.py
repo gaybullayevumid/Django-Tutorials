@@ -10,7 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from news_project.custom_permissions import OnlyLoggedSuperUser
 from django.db.models import Q
-from hitcount.views import HitCountDetailView, HitCountMixin
+from hitcount.views import HitCountMixin
+from hitcount.utils import get_hitcount_model
 
 # Create your views here.
 
