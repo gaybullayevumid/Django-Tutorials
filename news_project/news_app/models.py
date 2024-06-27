@@ -36,6 +36,7 @@ class News(models.Model):
                                 default=Status.Draft
                                 )
 
+    view_count = models.IntegerField(default=0)
     objects = models.Manager()
     published = PublishdManager()
 
