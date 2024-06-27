@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from news_project.custom_permissions import OnlyLoggedSuperUser
 from django.db.models import Q
+from hitcount.views import HitCountDetailView
 
 # Create your views here.
 
@@ -20,6 +21,10 @@ def news_list(request):
     }
 
     return render(request, "news/news_list.html", context)
+
+class PostCountHitDetailView(HitCountDetailView):
+    model = News        # your model goes here
+    count_hit = True    # set to True if you want it to try and count the hit
 
 def news_detail(request, news):
 
