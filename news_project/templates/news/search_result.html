@@ -4,6 +4,6 @@
 {% block content %}
     <h2>Qidiruv natijalari</h2>
     {% for yangilik in barcha_yangiliklar %}
-        <h3>{{yangilik.title}}</h3>
+        <h3><a href="{% url 'news_detail_page' yangilik.slug %}" class="text-danger">{{yangilik.title}}</a></h3>
     {% endfor %}
 {% endblock content %}
