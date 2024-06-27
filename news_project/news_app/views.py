@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from news_project.custom_permissions import OnlyLoggedSuperUser
 from django.db.models import Q
-from hitcount.views import HitCountDetailView
+from hitcount.views import HitCountDetailView, HitCountMixin
 
 # Create your views here.
 
@@ -22,13 +22,22 @@ def news_list(request):
 
     return render(request, "news/news_list.html", context)
 
-class PostCountHitDetailView(HitCountDetailView):
-    model = News        # your model goes here
-    count_hit = True    # set to True if you want it to try and count the hit
-
 def news_detail(request, news):
 
     news = get_object_or_404(News, slug=news, status=News.Status.Published)
+    context = {}
+    # hitcount logic
+    hit_count = get_hitcount_model().objects.get_for_object(news)
+    hit = hit_count.hits
+    hitcontext = context['hitcount'] = {'pk':hit_count.pk}
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+    if hit_count_response.hit_counted:
+        hits += 1
+        hitcontext['hit_counted'] = hit_count_response.hit_counted
+        hitcontext['hit_message'] = hit_count_response.hit_message
+        hitcontext['total_hits'] = hits
+
+
     comments = news.comments.filter(active=True)
     new_comment = None
     comment_form = CommentForm()
