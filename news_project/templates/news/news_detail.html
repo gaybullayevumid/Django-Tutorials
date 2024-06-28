@@ -5,7 +5,9 @@
 {% block content %}
     
     <h2>{{news.title}}</h2>
-    <h5>{{news.publish_time}} | <i class="fa-regular fa-eye" aria_hidden="true"></i> {% get_hit_count for news %}</h5>
+    <h5>{{news.publish_time}} | <i class="fa-regular fa-eye" aria_hidden="true"></i> 
+        {% get_hit_count for news %} | <i class="fa-solid fa-comment-dots" aria_hidden="true"></i> {{comment_count   }}
+    </h5>
     <img src="{{news.image.url}}" >
     <p>{{news.body}}</p>
 
@@ -17,6 +19,8 @@
         </div>
 
     {% endif %}<br>
+
+    <h3>Bu yangilikka {{comment_count}} ta izoh qoldirilgan</h3>
 
     {% for comment in comments %}
 
