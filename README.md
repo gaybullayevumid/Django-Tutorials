@@ -1,1 +1,1 @@
-# Django-Tutorials
+# DJANGO ASOSLARI
